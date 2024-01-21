@@ -3,6 +3,8 @@ const connectDb = require("./config/dbConnections");
 const dotenv = require("dotenv").config();
 const session = require("express-session");
 const bodyParser = require('body-parser');
+const serverlessHttp = require('serverless-http';)
+const router = express.Router();
 
 const port = process.env.PORT || 4000;
 const app = express();
@@ -31,6 +33,9 @@ app.set("view engine","ejs");
 
 app.use("",require("./routes/routes.js"));
 
-app.listen(4000, ()=>{
-    console.log(`App is up and live on Port : ${port}`);
-})
+app.use('/.netlify/functions/api', router);
+module.exports.handler = serverlessHttp(app);
+
+// app.listen(4000, ()=>{
+//     console.log(`App is up and live on Port : ${port}`);
+// })
