@@ -3,7 +3,7 @@ const connectDb = require("./config/dbConnections");
 const dotenv = require("dotenv").config();
 const session = require("express-session");
 const bodyParser = require('body-parser');
-const serverlessHttp = require('serverless-http';)
+const serverlessHttp = require('serverless-http');
 const router = express.Router();
 
 const port = process.env.PORT || 4000;
