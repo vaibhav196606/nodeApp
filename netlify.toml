@@ -1,9 +1,5 @@
 [build]
-  command = "npm run prod"
   functions = "functions"
-  publish = "public" 
 
-[[redirects]]
-  from = "/*"
-  to = "/"
-  status = 200
+[dev]
+  publish = "dist"
