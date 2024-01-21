@@ -1,0 +1,45 @@
+<%- include('layout/header') %>
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-lg-12">
+            <% if (message) { %>
+                <div class="alert alert-<%=message.type%> fde show alert-dismissible" role="alert">
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong><%=message.message%></strong>
+                </div>
+
+            <% } %>
+            
+            <div class="table-responsvie">
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="table-dark">
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <% for( let index = 0; index < users.length; index++ ) { %>
+                        <tr>
+                            <td><%= index+1  %></td>
+                            <td><img src="<%= users[index].image %>" alt="" width="50" class="img-thumbnail"></td>
+                            <td><%= users[index].name  %></td>
+                            <td><%= users[index].email  %></td>
+                            <td><%= users[index].phone  %></td>
+                            <td><a href="/edit/<%= users[index].id %>" class="text-success"> <i class="fa-solid fa-pen-to-square mx-1 "></i> </a> 
+                                <a href="/delete/<%= users[index].id %>" class="text-danger"><i class="fa-solid fa-trash mx-1 test-danger"></i></a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<%- include('layout/footer') %>
