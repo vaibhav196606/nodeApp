@@ -31,7 +31,7 @@ app.use(express.static('uploads'));
 
 app.set("view engine","ejs");
 
-app.use("",require("./routes/routes.js"));
+app.use("/",require("./routes/routes.js"));
 
 app.use('/.netlify/functions/api', router);
 module.exports.handler = serverlessHttp(app);
