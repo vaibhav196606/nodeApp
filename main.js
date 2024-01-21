@@ -33,9 +33,9 @@ app.set("view engine","ejs");
 
 app.use("/",require("./routes/routes.js"));
 
-app.use('/.netlify/functions/api', router);
-module.exports.handler = serverlessHttp(app);
+// app.use('/.netlify/functions/api', router);
+// module.exports.handler = serverlessHttp(app);
 
-// app.listen(4000, ()=>{
-//     console.log(`App is up and live on Port : ${port}`);
-// })
+app.listen(4000, ()=>{
+    console.log(`App is up and live on Port : ${port}`);
+})
