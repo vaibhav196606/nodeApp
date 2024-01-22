@@ -8,10 +8,9 @@
                     <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                     <strong><%=message.message%></strong>
                 </div>
-
             <% } %>
-            
-            <div class="table-responsvie">
+
+            <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr class="table-dark">
@@ -23,23 +22,45 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <% for( let index = 0; index < users.length; index++ ) { %>
+                    <% const itemsPerPage = 5; // Set the number of items per page %>
+                    <% const totalPages = Math.ceil(users.length / itemsPerPage); %>
+                    <% const currentPage = req.query.page ? parseInt(req.query.page) : 1; %>
+                    <% const startIdx = (currentPage - 1) * itemsPerPage; %>
+                    <% const endIdx = startIdx + itemsPerPage; %>
+
+                    <% for (let index = startIdx; index < endIdx && index < users.length; index++) { %>
                         <tr>
-                            <td><%= index+1  %></td>
+                            <td><%= index + 1 %></td>
                             <td><img src="<%= users[index].image %>" alt="" width="50" class="img-thumbnail"></td>
-                            <td><%= users[index].name  %></td>
-                            <td><%= users[index].email  %></td>
-                            <td><%= users[index].phone  %></td>
-                            <td><a href="/edit/<%= users[index].id %>" class="text-success"> <i class="fa-solid fa-pen-to-square mx-1 "></i> </a> 
-                                <a href="/delete/<%= users[index].id %>" class="text-danger"><i class="fa-solid fa-trash mx-1 test-danger"></i></a>
+                            <td><%= users[index].name %></td>
+                            <td><%= users[index].email %></td>
+                            <td><%= users[index].phone %></td>
+                            <td>
+                                <a href="/edit/<%= users[index].id %>" class="text-success">
+                                    <i class="fa-solid fa-pen-to-square mx-1 "></i>
+                                </a>
+                                <a href="/delete/<%= users[index].id %>" class="text-danger">
+                                    <i class="fa-solid fa-trash mx-1 test-danger"></i>
+                                </a>
                             </td>
                         </tr>
                     <% } %>
                 </table>
+
+                <!-- Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <% for (let i = 1; i <= totalPages; i++) { %>
+                            <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                                <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                            </li>
+                        <% } %>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
-
 </div>
+
 
 <%- include('layout/footer') %>

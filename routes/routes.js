@@ -24,7 +24,8 @@ router.get("/",async (req,res)=>{
         console.log(users.length);
         res.render("index",{
             title : "My page",
-            users : users
+            users : users,
+            req : req
         });
     }
     catch(err){
