@@ -1,38 +1,36 @@
 <%- include('layout/header') %>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 border m-2 p-2">
-            <div class="container mt-5 mx-auto">
-                <h2 class="text-center mb-4">Update User</h2>
-                <form action="/update/<%= user.id %>" method="post" id="add-form" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" name="name" class="form-control" id="name" value="<%= user.name %>" required>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 border rounded m-3 p-4">
+            <h2 class="text-center mb-4">Update User</h2>
+            <form action="/update/<%= user.id %>" method="post" id="update-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" class="form-control" id="name" value="<%= user.name %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" class="form-control" id="email" value="<%= user.email %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" name="phone" class="form-control" id="phone" value="<%= user.phone %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Upload Image:</label>
+                    <div class="custom-file">
+                        <input type="file" name="image" class="custom-file-input" id="image" accept="image/*">
+                        <label class="custom-file-label" for="image"></label>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" name="email" class="form-control" id="email" value="<%= user.email %>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone:</label>
-                        <input type="tel" name="phone" class="form-control" id="phone" value="<%= user.phone %>" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="image">Upload Image:</label>
-                        <div class="custom-file">
-                            <input type="file" name="image" class="custom-file-input" id="image" accept="image/*" >
-                            <label class="custom-file-label" for="image"></label>
-                        </div>
-                    </div>
-                    <input type="hidden" name="old_image" class="form-control" value="<%= user.image %>">
-                    <img src="/<%= user.image %>" width ="50" class="img-thumbnail mt-2"><br>
-                    <button type="submit" class="mt-4 btn btn-primary">Update User</button>
-                </form>
-            </div>
+                </div>
+                <input type="hidden" name="old_image" class="form-control" value="<%= user.image %>">
+                <img src="/<%= user.image %>" width="50" class="img-thumbnail mt-2"><br>
+                <button type="submit" class="mt-4 btn btn-primary btn-block col-12">Update User</button>
+            </form>
         </div>
     </div>
 </div>
+
 
 
 <%- include('layout/footer') %>
